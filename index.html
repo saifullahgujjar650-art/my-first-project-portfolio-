@@ -1,0 +1,216 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Wisha Khalid — Portfolio</title>
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.3/css/bootstrap.min.css" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800&display=swap" rel="stylesheet">
+  <style>
+    :root{--accent1:#6b5bff;--accent2:#00c2cb}
+    *{box-sizing:border-box}
+    body{font-family:'Inter',system-ui,-apple-system,'Segoe UI',Roboto,Arial;background:linear-gradient(135deg,#fff7fb,#f0fbff);color:#0f172a;overflow-x:hidden}
+    .navbar{backdrop-filter:blur(6px);background:rgba(255,255,255,.5)}.nav-link{font-weight:600}
+
+    /* HERO with soft gradient waves (replaces blobs) */
+    .hero{position:relative;padding:5.5rem 0 4rem}
+    .hero-card{position:relative;z-index:2;background:linear-gradient(135deg,rgba(255,255,255,.85),rgba(255,255,255,.7));border-radius:16px;padding:2rem;box-shadow:0 10px 30px rgba(15,23,42,.06)}
+
+    /* wave background */
+    .wave-bg{position:absolute;inset:0;z-index:1;pointer-events:none;overflow:hidden;border-radius:18px}
+    .wave-svg{position:absolute;left:50%;transform:translateX(-50%);width:140%;height:140%;opacity:.95}
+    .wave-path{animation:waveMove 10s linear infinite}
+    .wave-path.delay{animation-duration:14s;opacity:.9}
+    @keyframes waveMove{0%{transform:translateY(0) translateX(0)}50%{transform:translateY(-18px) translateX(6px)}100%{transform:translateY(0) translateX(0)}}
+
+    /* name + taglines */
+    .name-anim{font-size:2.3rem;font-weight:800;background:linear-gradient(90deg,var(--accent1),var(--accent2));-webkit-background-clip:text;color:transparent;animation:hue 6s linear infinite}
+    @keyframes hue{0%{filter:hue-rotate(0deg)}50%{filter:hue-rotate(40deg)}100%{filter:hue-rotate(0deg)}}
+
+    .skill{background:rgba(255,255,255,.6);border-radius:12px;padding:1rem;margin-bottom:1rem;transition:transform .3s}
+    .skill:hover{transform:translateY(-6px)}
+    .progress-wrap{height:10px;background:rgba(15,23,42,.06);border-radius:999px;overflow:hidden}
+    .progress-bar{height:10px;width:0;background:linear-gradient(90deg,var(--accent1),var(--accent2));transition:width 1s}
+
+    .section-title{position:relative;display:inline-block}
+    .section-title:after{content:'';position:absolute;left:0;bottom:-8px;height:4px;width:60%;border-radius:4px;background:linear-gradient(90deg,var(--accent1),var(--accent2));animation:slide 3.5s linear infinite}
+    @keyframes slide{0%{transform:translateX(-30%)}50%{transform:translateX(6%)}100%{transform:translateX(-30%)}}
+
+    @media (max-width:767px){.name-anim{font-size:1.6rem}.wave-svg{width:220%}}
+  </style>
+</head>
+<body>
+  <nav class="navbar navbar-expand-lg py-3">
+    <div class="container">
+      <a class="navbar-brand fw-bold" href="#">Wisha<span style="color:var(--accent1)">K</span></a>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navMenu"><span class="navbar-toggler-icon"></span></button>
+      <div class="collapse navbar-collapse" id="navMenu">
+        <ul class="navbar-nav ms-auto">
+          <li class="nav-item"><a class="nav-link" href="#about">About</a></li>
+          <li class="nav-item"><a class="nav-link" href="#skills">Skills</a></li>
+          <li class="nav-item"><a class="nav-link" href="#portfolio">Portfolio</a></li>
+          <li class="nav-item"><a class="nav-link" href="#contact">Contact</a></li>
+        </ul>
+      </div>
+    </div>
+  </nav>
+
+  <header class="hero">
+    <div class="container">
+      <div class="hero-card">
+        <!-- soft gradient wave background -->
+        <div class="wave-bg" aria-hidden>
+          <svg class="wave-svg" viewBox="0 0 1440 600" preserveAspectRatio="xMidYMid slice">
+            <defs>
+              <linearGradient id="g1" x1="0" x2="1"><stop offset="0" stop-color="#6b5bff" stop-opacity=".28"/><stop offset="1" stop-color="#00c2cb" stop-opacity=".18"/></linearGradient>
+              <linearGradient id="g2" x1="0" x2="1"><stop offset="0" stop-color="#ffd1e6" stop-opacity=".28"/><stop offset="1" stop-color="#fff5cc" stop-opacity=".1"/></linearGradient>
+            </defs>
+            <path class="wave-path" d="M0,320 C200,380 400,260 720,300 C1040,340 1240,260 1440,300 L1440,600 L0,600 Z" fill="url(#g1)"/>
+            <path class="wave-path delay" d="M0,360 C180,300 420,420 720,360 C1020,300 1260,420 1440,360 L1440,600 L0,600 Z" fill="url(#g2)"/>
+          </svg>
+        </div>
+
+        <div class="row align-items-center" style="position:relative;z-index:2">
+          <div class="col-lg-6">
+            <h1 class="mb-3"><span class="name-anim">Wisha Khalid</span></h1>
+            <div class="taglines mb-3">
+              <p class="lead">I craft clear, interactive, and animated web experiences using modern front-end technologies.</p>
+              <p>Professional focus on building responsive UI with clean HTML, polished CSS, Bootstrap components and delightful jQuery interactions.</p>
+              <p>Strong understanding of fundamentals — I bridge design and development for production-ready results.</p>
+              <p>Open to collaboration, rapid prototyping, and turning ideas into sleek, usable products.</p>
+            </div>
+
+            <div class="d-flex gap-2">
+              <a class="btn btn-primary btn-cta" href="#portfolio">See Work</a>
+              <a class="btn btn-outline-dark" href="#contact">Hire Me</a>
+            </div>
+
+            <div class="mt-4">
+              <small class="text-muted">Core skills:</small>
+              <div class="mt-2">
+                <span class="badge rounded-pill bg-light text-dark me-2">HTML</span>
+                <span class="badge rounded-pill bg-light text-dark me-2">CSS</span>
+                <span class="badge rounded-pill bg-light text-dark me-2">Bootstrap</span>
+                <span class="badge rounded-pill bg-light text-dark me-2">jQuery</span>
+                <span class="badge rounded-pill bg-light text-dark">Java</span>
+              </div>
+            </div>
+
+          </div>
+
+          <div class="col-lg-6 text-center">
+            <div class="p-3" style="position:relative; z-index:2">
+              <div class="mx-auto" style="width:220px;">
+                <div class="rounded-circle" style="width:220px;height:220px; background:linear-gradient(135deg,var(--accent1),var(--accent2)); padding:6px; box-shadow: 0 20px 40px rgba(107,91,255,0.15); transition:transform .6s cubic-bezier(.2,.9,.3,1)">
+                  <img src="https://images.unsplash.com/photo-1544005313-94ddf0286df2?q=80&w=600&auto=format&fit=crop&ixlib=rb-4.0.3&s=random" alt="Wisha" class="rounded-circle img-fluid" style="display:block; border:6px solid rgba(255,255,255,0.55);">
+                </div>
+                <div class="mt-3"><small class="text-muted">Full-stack Enthusiast • UI Lover</small></div>
+              </div>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <section id="about" class="py-5">
+    <div class="container">
+      <div class="row g-4">
+        <div class="col-lg-6">
+          <h3 class="section-title">About</h3>
+          <p class="mt-3">I'm Wisha — a front-end developer who loves creating animated, accessible, and fast interfaces. I use the following stack heavily and also apply each of these skills inside this site to showcase interactive behaviour.</p>
+
+          <ul>
+            <li>HTML: semantic structure and accessible markup.</li>
+            <li>CSS: custom animations, blobs and infinite effects.</li>
+            <li>Bootstrap: responsive grid & components.</li>
+            <li>jQuery: DOM interactions, animations and filtering.</li>
+            <li>Java: strong object-oriented fundamentals; experience building backend services and algorithms (listed as a core skill).</li>
+          </ul>
+        </div>
+
+        <div id="skills" class="col-lg-6">
+          <h3 class="section-title">Skills & Proficiency</h3>
+          <div class="skills mt-3">
+            <div class="skill" data-skill="HTML">
+              <div class="d-flex justify-content-between align-items-center mb-2"><strong>HTML</strong><span class="skill-badge">Markup</span></div>
+              <div class="progress-wrap"><div class="progress-bar" data-value="95"></div></div>
+            </div>
+            <div class="skill" data-skill="CSS">
+              <div class="d-flex justify-content-between align-items-center mb-2"><strong>CSS</strong><span class="skill-badge">Animations</span></div>
+              <div class="progress-wrap"><div class="progress-bar" data-value="92"></div></div>
+            </div>
+            <div class="skill" data-skill="Bootstrap">
+              <div class="d-flex justify-content-between align-items-center mb-2"><strong>Bootstrap</strong><span class="skill-badge">Responsive</span></div>
+              <div class="progress-wrap"><div class="progress-bar" data-value="88"></div></div>
+            </div>
+            <div class="skill" data-skill="jQuery">
+              <div class="d-flex justify-content-between align-items-center mb-2"><strong>jQuery</strong><span class="skill-badge">Interactions</span></div>
+              <div class="progress-wrap"><div class="progress-bar" data-value="85"></div></div>
+            </div>
+            <div class="skill" data-skill="Java">
+              <div class="d-flex justify-content-between align-items-center mb-2"><strong>Java</strong><span class="skill-badge">OOP</span></div>
+              <div class="progress-wrap"><div class="progress-bar" data-value="78"></div></div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="portfolio" class="py-5 bg-transparent">
+    <div class="container">
+      <div class="d-flex justify-content-between align-items-center mb-4">
+        <h3 class="section-title">Featured Projects</h3>
+        <div class="filters">
+          <button class="btn btn-sm btn-outline-light" data-filter="all">All</button>
+          <button class="btn btn-sm btn-outline-light" data-filter="frontend">Frontend</button>
+          <button class="btn btn-sm btn-outline-light" data-filter="ui">UI</button>
+          <button class="btn btn-sm btn-outline-light" data-filter="js">jQuery</button>
+        </div>
+      </div>
+
+      <div class="row g-3 portfolio">
+        <div class="col-md-6 col-lg-4" data-cat="frontend"><div class="card"><img class="thumb" src="https://images.unsplash.com/photo-1498050108023-c5249f4df085?q=80&w=800&auto=format&fit=crop&s=random" alt="Project 1"><div class="card-body"><h5 class="card-title">Interactive Landing (Bootstrap + CSS)</h5><p class="card-text">A responsive landing page with micro-animations, built with Bootstrap and handcrafted CSS.</p></div></div></div>
+        <div class="col-md-6 col-lg-4" data-cat="ui"><div class="card"><img class="thumb" src="https://images.unsplash.com/photo-1498050108023-c5249f4df085?q=80&w=800&auto=format&fit=crop&s=random" alt="Project 2"><div class="card-body"><h5 class="card-title">Design System & UI Kit</h5><p class="card-text">Reusable components, color tokens, and accessible UI patterns — focused on scalability.</p></div></div></div>
+        <div class="col-md-6 col-lg-4" data-cat="js"><div class="card"><img class="thumb" src="https://images.unsplash.com/photo-1498050108023-c5249f4df085?q=80&w=800&auto=format&fit=crop&s=random" alt="Project 3"><div class="card-body"><h5 class="card-title">Dynamic Gallery (jQuery)</h5><p class="card-text">Gallery with filter & lightbox behaviour powered by jQuery (see demo interactions).</p></div></div></div>
+      </div>
+    </div>
+  </section>
+
+  <section id="contact" class="py-5">
+    <div class="container">
+      <div class="row g-4">
+        <div class="col-lg-6">
+          <h3 class="section-title">Let's Talk</h3>
+          <p class="mt-3">Interested in working together? Send a message and I'll respond within a reasonable timeframe.</p>
+          <div class="contact-card mt-3"><form id="contactForm"><div class="mb-3"><label class="form-label">Name</label><input class="form-control" required></div><div class="mb-3"><label class="form-label">Email</label><input class="form-control" type="email" required></div><div class="mb-3"><label class="form-label">Message</label><textarea class="form-control" rows="4" required></textarea></div><button class="btn btn-primary">Send Message</button></form></div>
+        </div>
+        <div class="col-lg-6">
+          <h3 class="section-title">Quick Links & Tech Stack</h3>
+          <p class="mt-3">This site itself uses: <strong>HTML</strong>, <strong>CSS (animations + waves)</strong>, <strong>Bootstrap</strong>, and <strong>jQuery</strong> for DOM effects. The "Java" skill is showcased as a core competency and appears in skill progress and descriptive copy.</p>
+          <div class="mt-3"><div class="card p-3 mb-3"><h6 class="mb-1">Sample Java Snippet</h6><pre style="background:transparent;border:none;font-size:.9rem">public class HelloWorld { public static void main(String[] args) { System.out.println("Hello from Java — object-oriented & backend fundamentals."); } }</pre></div><div class="card p-3"><h6 class="mb-1">jQuery Demo</h6><p class="mb-0">Buttons above filter portfolio items and skill bars animate on page load using jQuery — try them out.</p></div></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <footer class="text-center"><div class="container"><small class="text-muted">© <strong>Wisha Khalid</strong> — Crafted with HTML, CSS, Bootstrap & jQuery</small></div></footer>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.3/js/bootstrap.bundle.min.js"></script>
+  <script>
+    // skill bars
+    $(function(){ $('.progress-bar').each(function(i,el){var v=$(el).data('value')||70;setTimeout(function(){ $(el).css('width',v+'%') },120+(i*180))});
+      // portfolio filter
+      $('.filters button').on('click',function(){var f=$(this).data('filter');$('.filters button').removeClass('active');$(this).addClass('active'); if(f==='all'){$('.portfolio [data-cat]').show(300)}else{$('.portfolio [data-cat]').each(function(){var c=$(this).data('cat'); c===f?$(this).show(300):$(this).hide(200)})}});
+      // contact demo
+      $('#contactForm').on('submit',function(e){e.preventDefault();alert('Thanks — message simulated. (Demo)')});
+      // interactive wave parallax on mouse move
+      var $svg = $('.wave-svg');
+      $(window).on('mousemove touchmove', function(e){var x=(e.clientX||e.originalEvent.touches&&e.originalEvent.touches[0].clientX||0);var w=$(window).width();var off=(x-w/2)/w*20; $svg.css('transform','translateX(calc(-50% + '+off+'px))')});
+    });
+  </script>
+</body>
+</html>
