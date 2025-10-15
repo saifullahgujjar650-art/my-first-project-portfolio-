@@ -4,42 +4,172 @@
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>Wisha Khalid — Portfolio</title>
+
+  <!-- Bootstrap CSS + font -->
   <link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.3/css/bootstrap.min.css" rel="stylesheet">
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800&display=swap" rel="stylesheet">
+
   <style>
-    :root{--accent1:#6b5bff;--accent2:#00c2cb}
-    *{box-sizing:border-box}
-    body{font-family:'Inter',system-ui,-apple-system,'Segoe UI',Roboto,Arial;background:linear-gradient(135deg,#fff7fb,#f0fbff);color:#0f172a;overflow-x:hidden}
-    .navbar{backdrop-filter:blur(6px);background:rgba(255,255,255,.5)}.nav-link{font-weight:600}
+    /* ---------- COLORS (Soft Purple, Peach Pink, Sky Blue) ---------- */
+    :root{
+      --soft-purple: #b9a1ff;
+      --peach-pink: #ffd6e0;
+      --sky-blue:  pink;
+      --accent1: #6b5bff;
+      --accent2: #00eaff;
+    }
 
-    /* HERO with soft gradient waves (replaces blobs) */
+    /* ---------- RESET & BODY ---------- */
+    *{box-sizing:border-box;margin:0;padding:0}
+    html,body{height:100%}
+    body{
+      font-family:'Inter',system-ui,-apple-system,'Segoe UI',Roboto,Arial;
+      color:#0f172a;
+      overflow-x:hidden;
+      min-height:100vh;
+      position:relative;
+
+      /* Diagonal animated gradient (medium motion) */
+      background: linear-gradient(135deg,
+        rgba(185,161,255,0.72) 0%,
+        rgba(255,214,224,0.68) 45%,
+        rgba(191,233,255,0.72) 100%);
+      background-size: 300% 300%;
+      animation: bgDiagonal 14s ease-in-out infinite;
+    }
+    @keyframes bgDiagonal{
+      0%{background-position:0% 0%}
+      50%{background-position:100% 100%}
+      100%{background-position:0% 0%}
+    }
+
+    /* ---------- BACKGROUND LAYERS: WAVES + ORBS ---------- */
+    .bg-waves{
+      position:fixed;inset:0;z-index:-3;pointer-events:none;overflow:hidden;
+    }
+    .bg-waves svg{position:absolute;left:50%;top:50%;transform:translate(-50%,-50%);width:160%;height:160%;mix-blend-mode:screen;filter:blur(8px) saturate(1.02)}
+    .bg-waves .wave1 path{fill:rgba(107,91,255,0.22);animation:waveMove1 10s ease-in-out infinite}
+    .bg-waves .wave2 path{fill:rgba(0,234,255,0.18);animation:waveMove2 14s ease-in-out infinite}
+    .bg-waves .wave3 path{fill:rgba(255,124,198,0.12);animation:waveMove3 18s ease-in-out infinite}
+    @keyframes waveMove1{0%{transform:translateY(0) translateX(0)}50%{transform:translateY(-28px) translateX(12px)}100%{transform:translateY(0) translateX(0)}}
+    @keyframes waveMove2{0%{transform:translateY(0) translateX(0)}50%{transform:translateY(-18px) translateX(-14px)}100%{transform:translateY(0) translateX(0)}}
+    @keyframes waveMove3{0%{transform:translateY(0) translateX(0)}50%{transform:translateY(-36px) translateX(20px)}100%{transform:translateY(0) translateX(0)}}
+
+    .bg-orbs{position:fixed;inset:0;z-index:-2;pointer-events:none}
+    .bg-orbs .orb{position:absolute;border-radius:50%;filter:blur(40px);opacity:0.22;mix-blend-mode:screen}
+    .bg-orbs .orb.a{width:480px;height:480px;left:-8%;top:6%;background:radial-gradient(circle at 30% 30%, var(--soft-purple), transparent 45%);animation:orbFloatA 16s ease-in-out infinite}
+    .bg-orbs .orb.b{width:420px;height:420px;right:-6%;bottom:4%;background:radial-gradient(circle at 70% 70%, var(--sky-blue), transparent 45%);animation:orbFloatB 18s ease-in-out infinite}
+    .bg-orbs .orb.c{width:360px;height:360px;left:30%;top:64%;background:radial-gradient(circle at 50% 50%, var(--peach-pink), transparent 45%);animation:orbFloatC 15s ease-in-out infinite}
+    @keyframes orbFloatA{0%{transform:translateY(0) translateX(0) scale(1)}50%{transform:translateY(-28px) translateX(20px) scale(1.04)}100%{transform:translateY(0) translateX(0) scale(1)}}
+    @keyframes orbFloatB{0%{transform:translateY(0) translateX(0) scale(1)}50%{transform:translateY(-18px) translateX(-26px) scale(1.03)}100%{transform:translateY(0) translateX(0) scale(1)}}
+    @keyframes orbFloatC{0%{transform:translateY(0) translateX(0) scale(1)}50%{transform:translateY(-36px) translateX(12px) scale(1.05)}100%{transform:translateY(0) translateX(0) scale(1)}}
+
+    /* ---------- NAVBAR ---------- */
+    .navbar{backdrop-filter:blur(6px);background:rgba(255,255,255,.5)}
+    .nav-link{font-weight:600}
+
+    /* ---------- HERO ---------- */
     .hero{position:relative;padding:5.5rem 0 4rem}
-    .hero-card{position:relative;z-index:2;background:linear-gradient(135deg,rgba(255,255,255,.85),rgba(255,255,255,.7));border-radius:16px;padding:2rem;box-shadow:0 10px 30px rgba(15,23,42,.06)}
-
-    /* wave background */
-    .wave-bg{position:absolute;inset:0;z-index:1;pointer-events:none;overflow:hidden;border-radius:18px}
-    .wave-svg{position:absolute;left:50%;transform:translateX(-50%);width:140%;height:140%;opacity:.95}
-    .wave-path{animation:waveMove 10s linear infinite}
-    .wave-path.delay{animation-duration:14s;opacity:.9}
-    @keyframes waveMove{0%{transform:translateY(0) translateX(0)}50%{transform:translateY(-18px) translateX(6px)}100%{transform:translateY(0) translateX(0)}}
-
-    /* name + taglines */
-    .name-anim{font-size:2.3rem;font-weight:800;background:linear-gradient(90deg,var(--accent1),var(--accent2));-webkit-background-clip:text;color:transparent;animation:hue 6s linear infinite}
+    .hero-card{
+      position:relative;z-index:2;
+      background:linear-gradient(135deg,rgba(255,255,255,.88),rgba(255,255,255,.72));
+      border-radius:16px;padding:2rem;box-shadow:0 10px 30px rgba(15,23,42,.06)
+    }
+    .name-anim{
+      font-size:2.3rem;font-weight:800;background:linear-gradient(90deg,var(--accent1),var(--accent2));-webkit-background-clip:text;color:transparent;
+      animation:hue 6s linear infinite
+    }
     @keyframes hue{0%{filter:hue-rotate(0deg)}50%{filter:hue-rotate(40deg)}100%{filter:hue-rotate(0deg)}}
 
+    /* ---------- WK neon glowy (Option 1: halo + pulse) ---------- */
+    .wk-wrap{display:flex;align-items:center;justify-content:center;flex-direction:column;gap:.6rem}
+    .wk-neon{
+      width:220px;height:220px;border-radius:50%;
+      display:flex;align-items:center;justify-content:center;
+      position:relative;z-index:3;
+      background: radial-gradient(circle at 30% 25%, rgba(255,255,255,0.06), rgba(255,255,255,0.02));
+      transition:transform .28s ease;
+      overflow:visible;
+    }
+
+    /* soft colored ring behind (glow) */
+    .wk-neon:before{
+      content:"";
+      position:absolute;inset:6px;border-radius:50%;
+      background:linear-gradient(135deg, rgba(185,161,255,0.18), rgba(191,233,255,0.12));
+      filter:blur(12px);
+      z-index:1;
+    }
+
+    /* halo aura (outer blurred glow) */
+    .wk-halo{
+      position:absolute;inset:-22px;border-radius:50%;
+      background: radial-gradient(circle, rgba(185,161,255,0.16), rgba(255,214,224,0.10), transparent 55%);
+      filter:blur(18px);
+      z-index:0;
+      transition:opacity .3s;
+    }
+
+    .wk-text{
+      position:relative;z-index:4;
+      font-weight:900;font-size:4rem;color:#ffffff;letter-spacing:1px;
+      text-shadow:
+        0 0 8px rgba(255,255,255,0.95),
+        0 0 20px rgba(108, 91, 123, 0.5),
+        0 0 36px rgba(107,91,255,0.18),
+        0 0 64px rgba(15, 23, 42, 0.6);
+      font-family: 'Inter', system-ui, -apple-system, 'Segoe UI', Roboto, Arial;
+    }
+
+    @keyframes wkPulse{
+      0%{transform:scale(1);filter:drop-shadow(0 0 8px rgba(107,91,255,0.08))}
+      40%{transform:scale(1.08);filter:drop-shadow(0 0 28px rgba(107,91,255,0.30))}
+      100%{transform:scale(1);filter:drop-shadow(0 0 8px rgba(107,91,255,0.08))}
+    }
+    .wk-neon{animation:wkPulse 2.6s ease-in-out infinite}
+
+    .wk-neon:hover{transform:translateY(-6px) scale(1.02)}
+
+    /* ---------- SKILLS, PROGRESS, SECTIONS (unchanged styling pattern) ---------- */
     .skill{background:rgba(255,255,255,.6);border-radius:12px;padding:1rem;margin-bottom:1rem;transition:transform .3s}
     .skill:hover{transform:translateY(-6px)}
     .progress-wrap{height:10px;background:rgba(15,23,42,.06);border-radius:999px;overflow:hidden}
     .progress-bar{height:10px;width:0;background:linear-gradient(90deg,var(--accent1),var(--accent2));transition:width 1s}
-
     .section-title{position:relative;display:inline-block}
     .section-title:after{content:'';position:absolute;left:0;bottom:-8px;height:4px;width:60%;border-radius:4px;background:linear-gradient(90deg,var(--accent1),var(--accent2));animation:slide 3.5s linear infinite}
     @keyframes slide{0%{transform:translateX(-30%)}50%{transform:translateX(6%)}100%{transform:translateX(-30%)}}
 
-    @media (max-width:767px){.name-anim{font-size:1.6rem}.wave-svg{width:220%}}
+    /* responsive tweaks */
+    @media (max-width:767px){
+      .name-anim{font-size:1.6rem}
+      .wk-text{font-size:3rem}
+      .wk-neon{width:160px;height:160px}
+    }
   </style>
 </head>
+
 <body>
+  <!-- BACKGROUND LAYERS (cover full page, behind content) -->
+  <div class="bg-waves" aria-hidden>
+    <!-- wave layers (colored, glowy) -->
+    <svg class="wave1" viewBox="0 0 1440 600" preserveAspectRatio="xMidYMid slice">
+      <path d="M0,320 C200,380 400,260 720,300 C1040,340 1240,260 1440,300 L1440,600 L0,600 Z"></path>
+    </svg>
+    <svg class="wave2" viewBox="0 0 1440 600" preserveAspectRatio="xMidYMid slice">
+      <path d="M0,360 C180,300 420,420 720,360 C1020,300 1260,420 1440,360 L1440,600 L0,600 Z"></path>
+    </svg>
+    <svg class="wave3" viewBox="0 0 1440 600" preserveAspectRatio="xMidYMid slice">
+      <path d="M0,300 C220,240 460,360 720,320 C980,280 1220,360 1440,320 L1440,600 L0,600 Z"></path>
+    </svg>
+  </div>
+
+  <div class="bg-orbs" aria-hidden>
+    <div class="orb a"></div>
+    <div class="orb b"></div>
+    <div class="orb c"></div>
+  </div>
+
+  <!-- NAVBAR (unchanged structure) -->
   <nav class="navbar navbar-expand-lg py-3">
     <div class="container">
       <a class="navbar-brand fw-bold" href="#">Wisha<span style="color:var(--accent1)">K</span></a>
@@ -55,21 +185,10 @@
     </div>
   </nav>
 
+  <!-- HERO -->
   <header class="hero">
     <div class="container">
       <div class="hero-card">
-        <!-- soft gradient wave background -->
-        <div class="wave-bg" aria-hidden>
-          <svg class="wave-svg" viewBox="0 0 1440 600" preserveAspectRatio="xMidYMid slice">
-            <defs>
-              <linearGradient id="g1" x1="0" x2="1"><stop offset="0" stop-color="#6b5bff" stop-opacity=".28"/><stop offset="1" stop-color="#00c2cb" stop-opacity=".18"/></linearGradient>
-              <linearGradient id="g2" x1="0" x2="1"><stop offset="0" stop-color="#ffd1e6" stop-opacity=".28"/><stop offset="1" stop-color="#fff5cc" stop-opacity=".1"/></linearGradient>
-            </defs>
-            <path class="wave-path" d="M0,320 C200,380 400,260 720,300 C1040,340 1240,260 1440,300 L1440,600 L0,600 Z" fill="url(#g1)"/>
-            <path class="wave-path delay" d="M0,360 C180,300 420,420 720,360 C1020,300 1260,420 1440,360 L1440,600 L0,600 Z" fill="url(#g2)"/>
-          </svg>
-        </div>
-
         <div class="row align-items-center" style="position:relative;z-index:2">
           <div class="col-lg-6">
             <h1 class="mb-3"><span class="name-anim">Wisha Khalid</span></h1>
@@ -95,16 +214,19 @@
                 <span class="badge rounded-pill bg-light text-dark">Java</span>
               </div>
             </div>
-
           </div>
 
           <div class="col-lg-6 text-center">
             <div class="p-3" style="position:relative; z-index:2">
               <div class="mx-auto" style="width:220px;">
-                <div class="rounded-circle" style="width:220px;height:220px; background:linear-gradient(135deg,var(--accent1),var(--accent2)); padding:6px; box-shadow: 0 20px 40px rgba(107,91,255,0.15); transition:transform .6s cubic-bezier(.2,.9,.3,1)">
-                  <img src="https://images.unsplash.com/photo-1544005313-94ddf0286df2?q=80&w=600&auto=format&fit=crop&ixlib=rb-4.0.3&s=random" alt="Wisha" class="rounded-circle img-fluid" style="display:block; border:6px solid rgba(255,255,255,0.55);">
+                <!-- IMAGE REMOVED → REPLACED WITH WK NEON PULSING -->
+                <div class="wk-wrap">
+                  <div class="wk-neon" aria-hidden>
+                    <span class="wk-halo"></span>
+                    <div class="wk-text">WK</div>
+                  </div>
+                  <div class="mt-3"><small class="text-muted">Full-stack Enthusiast • UI Lover</small></div>
                 </div>
-                <div class="mt-3"><small class="text-muted">Full-stack Enthusiast • UI Lover</small></div>
               </div>
             </div>
           </div>
@@ -114,6 +236,7 @@
     </div>
   </header>
 
+  <!-- ABOUT -->
   <section id="about" class="py-5">
     <div class="container">
       <div class="row g-4">
@@ -159,6 +282,7 @@
     </div>
   </section>
 
+  <!-- PORTFOLIO -->
   <section id="portfolio" class="py-5 bg-transparent">
     <div class="container">
       <div class="d-flex justify-content-between align-items-center mb-4">
@@ -179,37 +303,79 @@
     </div>
   </section>
 
+  <!-- CONTACT -->
   <section id="contact" class="py-5">
     <div class="container">
       <div class="row g-4">
         <div class="col-lg-6">
           <h3 class="section-title">Let's Talk</h3>
           <p class="mt-3">Interested in working together? Send a message and I'll respond within a reasonable timeframe.</p>
-          <div class="contact-card mt-3"><form id="contactForm"><div class="mb-3"><label class="form-label">Name</label><input class="form-control" required></div><div class="mb-3"><label class="form-label">Email</label><input class="form-control" type="email" required></div><div class="mb-3"><label class="form-label">Message</label><textarea class="form-control" rows="4" required></textarea></div><button class="btn btn-primary">Send Message</button></form></div>
+          <div class="contact-card mt-3">
+            <form id="contactForm">
+              <div class="mb-3"><label class="form-label">Name</label><input class="form-control" required></div>
+              <div class="mb-3"><label class="form-label">Email</label><input class="form-control" type="email" required></div>
+              <div class="mb-3"><label class="form-label">Message</label><textarea class="form-control" rows="4" required></textarea></div>
+              <button class="btn btn-primary">Send Message</button>
+            </form>
+          </div>
         </div>
+
         <div class="col-lg-6">
           <h3 class="section-title">Quick Links & Tech Stack</h3>
           <p class="mt-3">This site itself uses: <strong>HTML</strong>, <strong>CSS (animations + waves)</strong>, <strong>Bootstrap</strong>, and <strong>jQuery</strong> for DOM effects. The "Java" skill is showcased as a core competency and appears in skill progress and descriptive copy.</p>
-          <div class="mt-3"><div class="card p-3 mb-3"><h6 class="mb-1">Sample Java Snippet</h6><pre style="background:transparent;border:none;font-size:.9rem">public class HelloWorld { public static void main(String[] args) { System.out.println("Hello from Java — object-oriented & backend fundamentals."); } }</pre></div><div class="card p-3"><h6 class="mb-1">jQuery Demo</h6><p class="mb-0">Buttons above filter portfolio items and skill bars animate on page load using jQuery — try them out.</p></div></div>
+          <div class="mt-3">
+            <div class="card p-3 mb-3">
+              <h6 class="mb-1">Sample Java Snippet</h6>
+              <pre style="background:transparent;border:none;font-size:.9rem">public class HelloWorld { public static void main(String[] args) { System.out.println("Hello from Java — object-oriented & backend fundamentals."); } }</pre>
+            </div>
+            <div class="card p-3">
+              <h6 class="mb-1">jQuery Demo</h6>
+              <p class="mb-0">Buttons above filter portfolio items and skill bars animate on page load using jQuery — try them out.</p>
+            </div>
+          </div>
         </div>
       </div>
     </div>
   </section>
 
+  <!-- FOOTER -->
   <footer class="text-center"><div class="container"><small class="text-muted">© <strong>Wisha Khalid</strong> — Crafted with HTML, CSS, Bootstrap & jQuery</small></div></footer>
 
+  <!-- SCRIPTS (unchanged behaviours: progress bars, filters, contact demo, parallax) -->
   <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.3/js/bootstrap.bundle.min.js"></script>
   <script>
-    // skill bars
-    $(function(){ $('.progress-bar').each(function(i,el){var v=$(el).data('value')||70;setTimeout(function(){ $(el).css('width',v+'%') },120+(i*180))});
+    $(function(){
+      // skill bars
+      $('.progress-bar').each(function(i,el){
+        var v=$(el).data('value')||70;
+        setTimeout(function(){ $(el).css('width',v+'%') },120+(i*180));
+      });
+
       // portfolio filter
-      $('.filters button').on('click',function(){var f=$(this).data('filter');$('.filters button').removeClass('active');$(this).addClass('active'); if(f==='all'){$('.portfolio [data-cat]').show(300)}else{$('.portfolio [data-cat]').each(function(){var c=$(this).data('cat'); c===f?$(this).show(300):$(this).hide(200)})}});
+      $('.filters button').on('click',function(){
+        var f=$(this).data('filter');
+        $('.filters button').removeClass('active');
+        $(this).addClass('active');
+        if(f==='all'){$('.portfolio [data-cat]').show(300)}
+        else{$('.portfolio [data-cat]').each(function(){var c=$(this).data('cat'); c===f?$(this).show(300):$(this).hide(200)})}
+      });
+
       // contact demo
       $('#contactForm').on('submit',function(e){e.preventDefault();alert('Thanks — message simulated. (Demo)')});
-      // interactive wave parallax on mouse move
-      var $svg = $('.wave-svg');
-      $(window).on('mousemove touchmove', function(e){var x=(e.clientX||e.originalEvent.touches&&e.originalEvent.touches[0].clientX||0);var w=$(window).width();var off=(x-w/2)/w*20; $svg.css('transform','translateX(calc(-50% + '+off+'px))')});
+
+      // interactive parallax for background (mouse / touch)
+      $(window).on('mousemove touchmove', function(e){
+        var ex = e.clientX || (e.originalEvent && e.originalEvent.touches && e.originalEvent.touches[0].clientX) || 0;
+        var ey = e.clientY || (e.originalEvent && e.originalEvent.touches && e.originalEvent.touches[0].clientY) || 0;
+        var w = $(window).width(), h = $(window).height();
+        var moveX = (ex - w/2)/w * 30;
+        var moveY = (ey - h/2)/h * 18;
+        $('.bg-waves svg').css('transform','translate(-50%,-50%) translateX('+moveX+'px) translateY('+moveY+'px)');
+        $('.bg-orbs .orb.a').css('transform','translate('+ (moveX/2) +'px,'+ (moveY/2) +'px)');
+        $('.bg-orbs .orb.b').css('transform','translate('+ (moveX/3) +'px,'+ (moveY/3) +'px)');
+        $('.bg-orbs .orb.c').css('transform','translate('+ (moveX/4) +'px,'+ (moveY/4) +'px)');
+      });
     });
   </script>
 </body>
